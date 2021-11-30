@@ -1,0 +1,9 @@
+credentials.json
+token.json
+
+__pycache__
+
+Untitled.ipynb
+.ipynb_checkpoints
+
+geckodriver.log
