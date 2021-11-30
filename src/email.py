@@ -2,9 +2,8 @@ import os
 
 import base64
 from email.mime.text import MIMEText
-from googleapiclient.discovery import build, Resource
+from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 
 SCOPES = ["https://www.googleapis.com/auth/gmail.send"]
@@ -20,7 +19,7 @@ def get_credentials():
 
         with open("token.json", "w") as token:
             token.write(creds.to_json())
-    
+
     return creds
 
 
@@ -31,7 +30,7 @@ def create_email(sender: str, to: str, subject: str, message: str) -> dict:
     message["subject"] = subject
     raw = base64.urlsafe_b64encode(message.as_bytes())
     raw = raw.decode()
-    return {'raw' : raw}
+    return {"raw": raw}
 
 
 def send_email(sender: str, body: dict) -> None:

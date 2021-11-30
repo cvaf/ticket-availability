@@ -14,7 +14,7 @@ INTERESTED_DATES = (date.today(), date(2021, 12, 9))
 class Ticket:
 
     URL = "https://shop.tate.org.uk/ticket/date?cgid=7811"
-    BUTTON_XPATH = "//*[@id=\"cboxLoadedContent\"]/div/div[2]/div[3]/div[2]/a"
+    BUTTON_XPATH = '//*[@id="cboxLoadedContent"]/div/div[2]/div[3]/div[2]/a'
 
     def __init__(self):
         return
@@ -23,7 +23,7 @@ class Ticket:
         firefox_options = Options()
         firefox_options.add_argument("--headless")
         return webdriver.Firefox(options=firefox_options)
-    
+
     def get_page_source(self) -> BeautifulSoup:
         browser = self._get_browser()
         browser.get(self.URL)
@@ -40,8 +40,8 @@ class Ticket:
     def check_availability(self) -> List[str]:
         soup = self.get_page_source()
         return [
-            d.strftime("%Y-%m-%d") 
-            for d in _find_dates(*INTERESTED_DATES) 
+            d.strftime("%Y-%m-%d")
+            for d in _find_dates(*INTERESTED_DATES)
             if self._check_date_status(soup, f"{d.year}-{d.month-1}-{d.day}")
         ]
 

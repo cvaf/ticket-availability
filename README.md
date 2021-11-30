@@ -1,6 +1,6 @@
 # ticket availability
 
-check for available tickets 
+check for available tickets
 
 ```bash
 pip install poetry
